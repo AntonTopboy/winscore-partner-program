@@ -1,0 +1,843 @@
+/* ============================================
+   WINSCORE · Партнёрская программа
+   Stylesheet aligned to canonical brandbook-ws
+   Tokens: ./assets/ws-tokens.css
+   Fonts:  Whitney (local) + Inter (Google Fonts fallback)
+   ============================================ */
+
+/* ===== Whitney font faces (local — used when files present) ===== */
+
+@font-face {
+    font-family: 'Whitney';
+    src: url('./assets/fonts/Whitney-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Whitney';
+    src: url('./assets/fonts/Whitney-Book.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Whitney';
+    src: url('./assets/fonts/Whitney-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Whitney';
+    src: url('./assets/fonts/Whitney-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Whitney';
+    src: url('./assets/fonts/Whitney-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Whitney';
+    src: url('./assets/fonts/Whitney-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'WhitneyIndex';
+    src: url('./assets/fonts/WhitneyIndexBlack-RdBd.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'WhitneyIndex';
+    src: url('./assets/fonts/WhitneyIndexBlack-RdMd.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+.material-symbols-rounded {
+    font-family: 'Material Symbols Rounded', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Brandbook aliases (deck-only) ===== */
+
+:root {
+    --text: var(--ws-text);
+    --text-soft: var(--ws-text-secondary);
+    --bg: var(--ws-primary);
+    --surface: var(--ws-button-bg);
+    --surface-soft: var(--ws-secondary);
+    --line: var(--ws-stroke);
+    --accent: var(--ws-accent);
+    --accent-soft: var(--ws-accent-bg);
+    --accent-stroke: var(--ws-accent-stroke);
+    --bb-slide-canvas: #1f1e1e;
+    --bb-text-underlay: #070707;
+    --bb-block-shadow: 0 2px 8px rgba(0, 0, 0, 0.28),
+        0 12px 40px rgba(0, 0, 0, 0.22);
+    --slide-w: 1440px;
+    --slide-h: 810px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color-scheme: dark;
+}
+
+html,
+body {
+    background: var(--ws-secondary);
+    color: var(--text);
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+img {
+    display: block;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* ===== Deck container ===== */
+
+.deck {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 36px 96px;
+    overflow-x: hidden;
+}
+
+/* ===== Slide (canonical 1440×810) ===== */
+
+.slide {
+    position: relative;
+    width: var(--slide-w);
+    min-height: var(--slide-h);
+    height: var(--slide-h);
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--bb-slide-canvas);
+    border: 1px solid var(--ws-stroke);
+    padding: 44px 56px 40px;
+    display: none;
+    flex-direction: column;
+    transform-origin: top center;
+    color: var(--ws-text-on-accent);
+}
+
+.slide.is-active {
+    display: flex;
+}
+
+/* Scale slide down for narrow viewports — canvas stays at 1440 px */
+@media (max-width: 1556px) {
+    .slide {
+        transform: scale(calc((100vw - 72px) / 1440));
+    }
+    .deck {
+        height: calc(100vw * 0.5625 + 96px);
+        min-height: 0;
+        padding-bottom: 120px;
+    }
+}
+
+/* ===== Slide meta (top header) ===== */
+
+.slide-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+.brand-mini {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 700;
+    color: var(--ws-text-on-accent);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+.brand-mini img {
+    height: 30px;
+}
+
+.brand-mini span {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.frame-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 4px;
+    background: rgba(234, 88, 12, 0.14);
+    color: var(--ws-accent-stroke);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ===== Type ===== */
+
+.title {
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    text-transform: uppercase;
+    color: var(--ws-text-on-accent);
+}
+
+.title.medium {
+    font-size: 58px;
+}
+
+.title.small {
+    font-size: 48px;
+}
+
+.brand-accent {
+    color: var(--ws-accent-stroke);
+    font-weight: 700;
+}
+
+.lede {
+    max-width: 720px;
+    font-size: 22px;
+    line-height: 1.32;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.eyebrow {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ws-accent-stroke);
+    margin-bottom: 18px;
+}
+
+/* ===== SLIDE 01 · cover ===== */
+
+.cover-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.statement-box .lede {
+    margin-top: 24px;
+}
+
+.stack {
+    display: grid;
+    gap: 14px;
+}
+
+.statement-card {
+    background: var(--bb-text-underlay);
+    border: 1px solid var(--ws-stroke);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: baseline;
+    gap: 24px;
+}
+
+.statement-card strong {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ws-accent-stroke);
+}
+
+.statement-card span {
+    font-size: 17px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 400;
+}
+
+.statement-card b.brand-accent {
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    color: var(--ws-accent-stroke);
+}
+
+/* ===== SLIDE 02 · why you ===== */
+
+.two-col {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: stretch;
+}
+
+.reasons {
+    margin-top: 36px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.reasons li {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.reasons .material-symbols-rounded {
+    font-size: 28px;
+    color: var(--ws-accent-stroke);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.reasons strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ws-text-on-accent);
+    line-height: 1.2;
+}
+
+.reasons span {
+    display: block;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.4;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+/* Anchor card 100 ₽ */
+
+.anchor-card {
+    position: relative;
+    background: linear-gradient(
+        160deg,
+        var(--ws-accent) 0%,
+        #c44504 100%
+    );
+    border-radius: 24px;
+    padding: 44px 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(234, 88, 12, 0.25),
+        0 12px 40px rgba(234, 88, 12, 0.18);
+    color: #fff;
+}
+
+.anchor-card::before {
+    content: '';
+    position: absolute;
+    inset: -40% -50% auto auto;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+}
+
+.anchor-card > * {
+    position: relative;
+}
+
+.anchor-card__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.anchor-card__amount {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 20px;
+    line-height: 0.85;
+}
+
+.anchor-card__num {
+    font-family: 'WhitneyIndex', 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 200px;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.anchor-card__cur {
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0.92;
+}
+
+.anchor-card__desc {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.anchor-card__channels {
+    display: flex;
+    gap: 14px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.anchor-card__channels .material-symbols-rounded {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.anchor-card__channels-label {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== SLIDE 03 · flow ===== */
+
+.flow {
+    margin-top: 40px;
+    display: flex;
+    gap: 14px;
+    flex: 1;
+    align-items: stretch;
+    max-height: 360px;
+}
+
+.flow__step {
+    flex: 1;
+    background: var(--bb-text-underlay);
+    border: 1px solid var(--ws-stroke);
+    border-radius: 20px;
+    padding: 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+}
+
+.flow__num {
+    font-family: 'WhitneyIndex', 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.34);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: 0.02em;
+}
+
+.flow__title {
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ws-text-on-accent);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-top: 28px;
+}
+
+.flow__desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.4;
+    margin-top: 12px;
+}
+
+.flow__step--accent {
+    background: linear-gradient(160deg, var(--ws-accent) 0%, #c44504 100%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 40px rgba(234, 88, 12, 0.22),
+        0 12px 32px rgba(234, 88, 12, 0.16);
+}
+
+.flow__step--accent .flow__num {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.flow__step--accent .flow__title,
+.flow__step--accent .flow__desc {
+    color: #fff;
+}
+
+.flow__step--accent .flow__desc b {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.flow__arrow {
+    align-self: center;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 36px;
+}
+
+.how-foot {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 22px;
+    background: var(--bb-text-underlay);
+    border: 1px solid var(--ws-stroke);
+    border-radius: 16px;
+}
+
+.how-foot__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.how-foot__item .material-symbols-rounded {
+    font-size: 20px;
+    color: var(--ws-accent-stroke);
+}
+
+.how-foot__sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== SLIDE 04 · CTA ===== */
+
+.cta-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.checklist {
+    margin-top: 36px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.checklist li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.checklist em {
+    color: rgba(255, 255, 255, 0.55);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.checklist .material-symbols-rounded {
+    font-size: 28px;
+    color: var(--ws-accent-stroke);
+    flex-shrink: 0;
+}
+
+.cta-card {
+    background: var(--bb-text-underlay);
+    border: 1px solid var(--ws-stroke);
+    border-radius: 24px;
+    padding: 36px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cta-card__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ws-accent-stroke);
+    margin-bottom: 18px;
+}
+
+.cta-card__name {
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ws-text-on-accent);
+    line-height: 1.1;
+}
+
+.cta-card__contacts {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.cta-card__contacts a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 140ms ease;
+}
+
+.cta-card__contacts a:hover {
+    color: var(--ws-accent-stroke);
+}
+
+.cta-card__contacts .dot {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 22px;
+    border: 1px solid var(--ws-button-stroke-accent);
+    border-radius: 12px;
+    background: var(--ws-button-bg-accent);
+    color: var(--ws-button-text-accent);
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter 140ms ease, transform 140ms ease;
+    align-self: stretch;
+}
+
+.cta-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.cta-btn .material-symbols-rounded {
+    font-size: 20px;
+}
+
+.cta-card__anchor {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--ws-stroke);
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--ws-accent-stroke);
+    letter-spacing: -0.01em;
+}
+
+/* ===== SLIDE 05 · tracking links ===== */
+
+.links {
+    margin-top: 24px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.link-row {
+    display: grid;
+    grid-template-columns: 280px 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 22px;
+    background: var(--bb-text-underlay);
+    border: 1px solid var(--ws-stroke);
+    border-radius: 14px;
+    transition: border-color 140ms ease, transform 140ms ease;
+}
+
+.link-row:hover {
+    border-color: var(--ws-accent-stroke);
+}
+
+.link-row__brand {
+    font-family: 'Whitney', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ws-text-on-accent);
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+}
+
+.link-row__url {
+    font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 140ms ease;
+}
+
+.link-row__url:hover {
+    color: var(--ws-accent-stroke);
+}
+
+.link-row__copy {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--ws-stroke);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 140ms ease, color 140ms ease,
+        border-color 140ms ease;
+}
+
+.link-row__copy:hover {
+    background: var(--ws-accent);
+    border-color: var(--ws-accent);
+    color: #fff;
+}
+
+.link-row__copy.is-copied {
+    background: var(--ws-success);
+    border-color: var(--ws-success);
+    color: #fff;
+}
+
+.link-row__copy .material-symbols-rounded {
+    font-size: 18px;
+}
+
+/* ===== Deck nav ===== */
+
+.deck-nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--ws-button-bg);
+    border: 1px solid var(--ws-stroke);
+    border-radius: 999px;
+    padding: 8px 14px;
+    z-index: 100;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--ws-text-on-accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 140ms ease;
+}
+
+.nav-btn:hover {
+    background: var(--ws-button-bg-pressed);
+}
+
+.nav-btn:disabled {
+    color: rgba(255, 255, 255, 0.25);
+    cursor: not-allowed;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 140ms ease, width 140ms ease;
+}
+
+.dot.is-active {
+    background: var(--ws-accent-stroke);
+    width: 24px;
+    border-radius: 999px;
+}
