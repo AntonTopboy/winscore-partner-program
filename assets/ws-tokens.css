@@ -1,0 +1,211 @@
+/*
+  Winscore CSS variables — канон как в продукте.
+  Соответствует EXHAUST UI KIT tokens.json (Winscore[Light] / тёмная сцена).
+  Брендбук: по умолчанию тёмная сцена (:root). Маркетинг — всегда тёмный фон слайда/носителя.
+*/
+:root,
+html.dark,
+.dark {
+  --ws-container-width: 375px;
+
+  --ws-size-zero: 0px;
+  --ws-size-min: 2px;
+  --ws-size-xss: 4px;
+  --ws-size-xs: 8px;
+  --ws-size-s: 12px;
+  --ws-size-m: 16px;
+  --ws-size-l: 24px;
+  --ws-size-xl: 32px;
+  --ws-size-bottle: 16px;
+  --ws-size-section: 20px;
+
+  --ws-text-xsss: 9px;
+  --ws-text-xss: 11px;
+  --ws-text-xs: 12px;
+  --ws-text-s: 14px;
+  --ws-text-m: 17px;
+  --ws-text-l: 20px;
+  --ws-text-xl: 22px;
+  --ws-text-xxl: 28px;
+  --ws-text-xxxl: 34px;
+
+  --ws-icon-xss: 12px;
+  --ws-icon-xs: 16px;
+  --ws-icon-s: 16px;
+  --ws-icon-m: 20px;
+  --ws-icon-l: 24px;
+  --ws-icon-xl: 40px;
+
+  --ws-radius-zero: 0px;
+  --ws-radius-sm: 8px;
+  --ws-radius-md: 16px;
+  --ws-radius-max: 1000px;
+
+  --ws-radius-xss: var(--ws-size-xss);
+  --ws-radius-s: var(--ws-size-s);
+  --ws-radius-l: var(--ws-size-l);
+  --ws-radius-xl: var(--ws-size-xl);
+
+  /* Тёмная сцена (основная в брендбуке и в продукте по умолчанию) */
+  --ws-primary: #131313;
+  --ws-secondary: #070707;
+
+  --ws-text: #f1f1f1;
+  --ws-text-secondary: #e4e4e4;
+  --ws-text-on-accent: #f5f5f5;
+
+  --ws-button-bg: #1f1e1e;
+  --ws-button-bg-70: rgba(7, 7, 7, 0.7);
+  --ws-button-bg-pressed: #170800;
+  --ws-button-bg-pressed-70: rgba(63, 39, 26, 0.7);
+  --ws-button-stroke: #070707;
+
+  --ws-button-bg-accent: #de4c00;
+  --ws-button-text-accent: #f5f5f5;
+  --ws-button-stroke-accent: #ea8c3e;
+
+  --ws-accent-bg: #361200;
+  --ws-accent-stroke: #ea8c3e;
+
+  --ws-stroke: rgba(46, 46, 46, 0.3);
+
+  --ws-overlay: rgba(0, 0, 0, 0.6);
+  --ws-shadow-color: rgba(0, 0, 0, 0.4);
+  --ws-shadow-floating: rgba(0, 0, 0, 0.3);
+  --ws-inner-shadow: rgba(255, 255, 255, 0.15);
+
+  --ws-gradient-from: #070707;
+
+  --ws-event-bg: rgba(245, 163, 0, 0.15);
+  --ws-success-bg: rgba(126, 203, 125, 0.15);
+  --ws-error-bg: rgba(239, 68, 68, 0.14);
+  --ws-badge-bg: #1f1e1e;
+
+  --ws-live: #ef4444;
+  --ws-green: #7ecb7d;
+  --ws-dark-green: #386847;
+  --ws-yellow: #ffd443;
+  --ws-accent: #ea580c;
+  --ws-success: #4caf50;
+  --ws-info: #2196f3;
+  --ws-info-bg: rgba(33, 150, 243, 0.15);
+
+  --ws-team-1: #155e75;
+  --ws-team-2: #7aa8d4;
+  --ws-team-3: #b84d4d;
+  --ws-team-4: #b8a82e;
+  --ws-team-5: #a82f30;
+
+  --ws-field: #2a4d35;
+  --ws-field-lines: #3a3a3a;
+
+  --ws-surface-inverted: #070707;
+
+  --ws-ink-surface: #131313;
+
+  --ws-chrome-surface: #131313;
+  --ws-chrome-raised: #1f1e1e;
+  --ws-chrome-deep: #070707;
+}
+
+@media (min-width: 768px) {
+  :root,
+  html.dark,
+  .dark {
+    --ws-container-width: 760px;
+
+    --ws-size-min: 4px;
+    --ws-size-xss: 8px;
+    --ws-size-xs: 12px;
+    --ws-size-s: 16px;
+    --ws-size-m: 24px;
+    --ws-size-l: 32px;
+    --ws-size-xl: 40px;
+    --ws-size-bottle: 24px;
+    --ws-size-section: 28px;
+
+    --ws-text-xsss: 11px;
+    --ws-text-xss: 12px;
+    --ws-text-xs: 14px;
+    --ws-text-s: 17px;
+    --ws-text-m: 20px;
+    --ws-text-l: 22px;
+    --ws-text-xl: 28px;
+    --ws-text-xxl: 34px;
+    --ws-text-xxxl: 40px;
+
+    --ws-icon-xss: 16px;
+    --ws-icon-xs: 20px;
+    --ws-icon-s: 20px;
+    --ws-icon-m: 24px;
+    --ws-icon-l: 40px;
+    --ws-icon-xl: 48px;
+
+    --ws-radius-sm: 16px;
+    --ws-radius-md: 24px;
+  }
+}
+
+/* Светлая сцена Winscore[Light] — опционально (продукт) */
+html.light,
+.light {
+  --ws-primary: #fbfbfb;
+  --ws-secondary: #f2f2f2;
+
+  --ws-text: #131313;
+  --ws-text-secondary: #52525b;
+  --ws-text-on-accent: #f5f5f5;
+
+  --ws-button-bg: #fbfbfb;
+  --ws-button-bg-70: rgba(250, 250, 250, 0.7);
+  --ws-button-bg-pressed: #fff0dd;
+  --ws-button-bg-pressed-70: rgba(255, 240, 221, 0.7);
+  --ws-button-stroke: #f5f5f5;
+
+  --ws-button-bg-accent: #ea580c;
+  --ws-button-text-accent: #f5f5f5;
+  --ws-button-stroke-accent: #ea580c;
+
+  --ws-accent-bg: #fff0dd;
+  --ws-accent-stroke: #fdf4e9;
+
+  --ws-stroke: rgba(233, 233, 233, 0.3);
+
+  --ws-overlay: rgba(0, 0, 0, 0.4);
+  --ws-shadow-color: rgba(0, 0, 0, 0.05);
+  --ws-shadow-floating: rgba(0, 0, 0, 0.1);
+  --ws-inner-shadow: rgba(255, 255, 255, 0.15);
+
+  --ws-gradient-from: #f2f2f2;
+
+  --ws-event-bg: #fff1d6;
+  --ws-success-bg: #e3ffd9;
+  --ws-error-bg: #fee2e2;
+  --ws-badge-bg: #f2f2f2;
+
+  --ws-live: #ef4444;
+  --ws-green: #7ecb7d;
+  --ws-dark-green: #386847;
+  --ws-yellow: #ffd443;
+  --ws-accent: #ea580c;
+  --ws-success: #4caf50;
+  --ws-info: #2196f3;
+  --ws-info-bg: #e3f2fd;
+
+  --ws-team-1: #a5f3fc;
+  --ws-team-2: #b2d6ff;
+  --ws-team-3: #ff6b6b;
+  --ws-team-4: #ffeb3b;
+  --ws-team-5: #e84142;
+
+  --ws-field: #386847;
+  --ws-field-lines: #f5f5f5;
+
+  --ws-surface-inverted: #070707;
+
+  --ws-ink-surface: #131313;
+
+  --ws-chrome-surface: #131313;
+  --ws-chrome-raised: #1f1e1e;
+  --ws-chrome-deep: #070707;
+}
